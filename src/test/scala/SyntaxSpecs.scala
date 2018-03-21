@@ -1,4 +1,5 @@
 import org.scalatest.{FlatSpec, Matchers, WordSpec}
+import syntax.Syntax.{ListType, Singleplayer}
 import syntax._
 
 class SyntaxSpecs extends WordSpec with Matchers {
@@ -22,4 +23,25 @@ class SyntaxSpecs extends WordSpec with Matchers {
       result shouldBe expectedResult
     }
   }
+
+  "patternMatching" should {
+    "return 1 if the case class's list parameter is of type int" in {
+      val intCC: ListType = Syntax.Integers(List(1,2,3,4,5))
+      val result = Syntax.patternMatching(intCC)
+      val expectedResult = 1
+
+      result shouldBe expectedResult
+    }
+  }
+
+  "The play method within the Game trait" should {
+    "print the name of the singleplayer game" in {
+      val gameObject = Singleplayer("Metro Exodus", 40, List("PC", "PS4", "XB1"), 15)
+      val result = gameObject.play(gameObject.name)
+      val expectedResult = "Now playing: Metro Exodus"
+
+      result shouldBe expectedResult
+    }
+  }
+
 }

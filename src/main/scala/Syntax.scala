@@ -40,12 +40,18 @@ object Syntax extends App {
     }
   }
 
-  case class Singleplayer(name: String, price: Int, platform: List[String], noOfMissions: Int) extends Game
+  case class Singleplayer(name: String, price: Int, platform: List[String], noOfMissions: Option[Int]) extends Game
   case class Multiplayer(name: String, price: Int, platform: List[String], maxPlayers: Int) extends Game
 
-  val sp = Singleplayer("Metro Exodus", 40, List("PC", "PS4", "XB1"), 15)
-  val mp = Multiplayer("PUBG", 30, List("PC", "XB1"), 100)
+  val sp = Singleplayer("Metro Exodus", 40, List(GamePlatform.PC, GamePlatform.PS4, GamePlatform.XB1), Some(15))
+  val mp = Multiplayer("PUBG", 30, List(GamePlatform.PC, GamePlatform.XB1), 100)
 
-  //sp.play(sp.name)
-  //mp.play(mp.name)
+  sp.noOfMissions.getOrElse(0)
+
+  object GamePlatform extends Enumeration {
+    type String = Value
+    val PC = Value("PC")
+    val PS4 = Value("PS4")
+    val XB1 = Value("XB1")
+  }
 }

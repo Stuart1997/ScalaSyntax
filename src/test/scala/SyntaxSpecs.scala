@@ -36,7 +36,7 @@ class SyntaxSpecs extends WordSpec with Matchers {
 
   "The play method within the Game trait" should {
     "print the name of the singleplayer game" in {
-      val gameObject = Singleplayer("Metro Exodus", 40, List("PC", "PS4", "XB1"), 15)
+      val gameObject = Singleplayer("Metro Exodus", 40, List("PC", "PS4", "XB1"), Some(15))
       val result = gameObject.play(gameObject.name)
       val expectedResult = "Now playing: Metro Exodus"
 
